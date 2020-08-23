@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "454028572328",
+    "firebase_url": "https://emojistatus-aa2a0.firebaseio.com",
+    "project_id": "emojistatus-aa2a0",
+    "storage_bucket": "emojistatus-aa2a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454028572328:android:d605eff9c40419b962b49d",
+        "android_client_info": {
+          "package_name": "edu.stanford.rkpandey.emojistatus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454028572328-djfhg20kggpqh01p6m6lhd7uannkv2f8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.stanford.rkpandey.emojistatus",
+            "certificate_hash": "411ac169cb0586a33051e7a2bee1db3048211c92"
+          }
+        },
+        {
+          "client_id": "454028572328-qeqj58uvqln6ef016316gtkffopvnmiq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5esZ5oQWrJK0VEGwpaxZt2dEgghAqxQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454028572328-qeqj58uvqln6ef016316gtkffopvnmiq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
