@@ -36,4 +36,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.5.0'
+    implementation 'com.firebaseui:firebase-ui-firestore:6.3.0'
 }
