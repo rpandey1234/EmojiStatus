@@ -1,11 +1,15 @@
 package edu.stanford.rkpandey.emojistatus
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -71,7 +75,36 @@ class MainActivity : AppCompatActivity() {
             val logoutIntent = Intent(this, LoginActivity::class.java)
             logoutIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(logoutIntent)
+        } else if (item.itemId == R.id.miEdit) {
+            showAlertDialog()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showAlertDialog() {
+        val editText = EditText(this)
+        
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Update your emojis")
+            .setView(editText)
+            .setNegativeButton("Cancel", null)
+            .setPositiveButton("OK", null)
+            .show()
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener { 
+            Log.i(TAG, "Clicked on positive button!")
+            val emojisEntered = editText.text.toString()
+            if (emojisEntered.isBlank()) {
+                Toast.makeText(this, "Cannot submit empty text", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val currentUser = auth.currentUser
+            if (currentUser == null) {
+                Toast.makeText(this, "No signed in user", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            db.collection("users").document(currentUser.uid)
+                .update("emojis", emojisEntered)
+            dialog.dismiss()
+        }
     }
 }
