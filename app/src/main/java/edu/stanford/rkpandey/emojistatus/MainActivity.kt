@@ -3,6 +3,8 @@ package edu.stanford.rkpandey.emojistatus
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.Spanned
 import android.util.Log
 import android.view.*
 import android.widget.EditText
@@ -83,7 +85,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showAlertDialog() {
         val editText = EditText(this)
-        
+        val emojiFilter = EmojiFilter()
+        val lengthFilter = InputFilter.LengthFilter(9)
+        editText.filters = arrayOf(lengthFilter, emojiFilter)
         val dialog = AlertDialog.Builder(this)
             .setTitle("Update your emojis")
             .setView(editText)
@@ -106,5 +110,26 @@ class MainActivity : AppCompatActivity() {
                 .update("emojis", emojisEntered)
             dialog.dismiss()
         }
+    }
+    
+    inner class EmojiFilter : InputFilter {
+        override fun filter(source: CharSequence?, start: Int, end: Int, dest: Spanned?, dstart: Int, dend: Int): CharSequence {
+            if (source == null || source.isBlank()) {
+                return ""
+            }
+            Log.i(TAG, "Added text $source has length of ${source.length} characters")
+            val validCharTypes = listOf(Character.SURROGATE, Character.NON_SPACING_MARK, Character.OTHER_SYMBOL).map { it.toInt() }
+            for (inputChar in source) {
+                val type = Character.getType(inputChar)
+                Log.i(TAG, "Character type $type")
+                if (!validCharTypes.contains(type)) {
+                    Toast.makeText(this@MainActivity, "Only emojis are allowed", Toast.LENGTH_SHORT).show()
+                    return ""
+                }
+            }
+            // The CharSequence being added is a valid emoji! Allow it to be added
+            return source
+        }
+
     }
 }
