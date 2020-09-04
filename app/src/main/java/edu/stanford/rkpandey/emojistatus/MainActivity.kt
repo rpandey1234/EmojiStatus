@@ -34,6 +34,24 @@ class MainActivity : AppCompatActivity() {
     
     private companion object {
         private const val TAG = "MainActivity"
+        private val VALID_CHAR_TYPES = listOf(
+            Character.NON_SPACING_MARK, // 6
+            Character.DECIMAL_DIGIT_NUMBER, // 9
+            Character.LETTER_NUMBER, // 10
+            Character.OTHER_NUMBER, // 11
+            Character.SPACE_SEPARATOR, // 12
+            Character.FORMAT, // 16
+            Character.SURROGATE, // 19
+            Character.DASH_PUNCTUATION, // 20
+            Character.START_PUNCTUATION, // 21
+            Character.END_PUNCTUATION, // 22
+            Character.CONNECTOR_PUNCTUATION, // 23
+            Character.OTHER_PUNCTUATION, // 24
+            Character.MATH_SYMBOL, // 25
+            Character.CURRENCY_SYMBOL, //26
+            Character.MODIFIER_SYMBOL, // 27
+            Character.OTHER_SYMBOL // 28
+        ).map { it.toInt() }.toSet()
     }
 
     private val db = Firebase.firestore
@@ -118,11 +136,10 @@ class MainActivity : AppCompatActivity() {
                 return ""
             }
             Log.i(TAG, "Added text $source has length of ${source.length} characters")
-            val validCharTypes = listOf(Character.SURROGATE, Character.NON_SPACING_MARK, Character.OTHER_SYMBOL).map { it.toInt() }
             for (inputChar in source) {
                 val type = Character.getType(inputChar)
                 Log.i(TAG, "Character type $type")
-                if (!validCharTypes.contains(type)) {
+                if (!VALID_CHAR_TYPES.contains(type)) {
                     Toast.makeText(this@MainActivity, "Only emojis are allowed", Toast.LENGTH_SHORT).show()
                     return ""
                 }
