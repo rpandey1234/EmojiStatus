@@ -12,7 +12,7 @@ Architecture diagram of the Firebase services used:
 
 Relevant links:
 - Published version of the app: [Google Play](https://play.google.com/store/apps/details?id=edu.stanford.rkpandey.emojistory&hl=en_US)
-- Watch the [YouTube vidoes](https://youtu.be/7gF6uUSQXC4) to learn how to build this
+- Watch the [YouTube vidoes](https://www.youtube.com/watch?v=7gF6uUSQXC4&list=PL7NYbSE8uaBB43Ga7Yi-Vzy0ctEzTgxT5) to learn how to build this
 - The Javascript code for the Cloud Functions is stored in [this repository](https://github.com/rpandey1234/EmojiStatusCloud). 
 - Firebase documentation: https://firebase.google.com/docs
 
